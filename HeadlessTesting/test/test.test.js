@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const sessionFactory = require("./factories/sessionFactory")
 
 jest.setTimeout(300000)
 
@@ -30,7 +31,37 @@ test("clicking login triggers oauth flow", async () => {
 test.only("When signed in, shows ", async () => {
     const id = "5eb4859950a7b63b98256333";
 
-    const Buffer = require("safe-buffer").Buffer;
+    const {session, sig} = sessionFactory()
+
+    await page.setCookie({name: "express:sess", value: session})
+    await page.setCookie({name: "express:sess.sig", value: "uo8YWPSCzC3guU43IUIQVLQDXLo"});
+
+    await page.goto("localhost:3000/logged")
+    await page.waitFor("p")
+
+    const message = await page.$eval("p.SideNav__full-name", e => e.innerHTML);
+    
+
+    expect(message).toEqual("Laith Harb")
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+ const Buffer = require("safe-buffer").Buffer;
     const sessionObject = {
         passport : {
             user: id
@@ -44,14 +75,4 @@ test.only("When signed in, shows ", async () => {
     const keygrip = new Keygrip(["My mama called, see you on TV. Said, son, shit dont change, and I dream all, wont be nothing, now all they say is congrats, vacationed so hard forgot to work"])
     const sig = "uo8YWPSCzC3guU43IUIQVLQDXLo"
 
-    await page.setCookie({name: "express:sess", value: sessionString})
-    await page.setCookie({name: "express:sess.sig", value: "uo8YWPSCzC3guU43IUIQVLQDXLo"});
-
-    await page.goto("localhost:3000/logged")
-    await page.waitFor("p.CreateHabitForm__description")
-
-    const message = await page.$eval(".CreateHabitForm__description", e => e.innerHTML);
-
-    expect(message).toEqual("It looks like you haven't created or broken down your goals yet. Lets do that now! Fill out the form to the right and start working towards your dream life.")
-    
-})
+    */
