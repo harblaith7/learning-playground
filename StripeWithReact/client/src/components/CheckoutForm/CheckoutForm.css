@@ -1,0 +1,24 @@
+.CheckoutForm {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10rem;
+}
+
+.CheckoutForm input {
+    margin: .5rem;
+    width: 40%
+}
+
+.CheckoutForm button {
+    margin: .5rem;
+    width: 40%
+}
+
+
+
+.CheckoutForm__div {
+    width: 40%
+}
