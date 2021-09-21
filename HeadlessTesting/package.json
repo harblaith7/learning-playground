@@ -329,7 +329,7 @@
     "test-exclude": "^6.0.0",
     "throat": "^5.0.0",
     "through": "^2.3.8",
-    "tmpl": "^1.0.4",
+    "tmpl": "^1.0.5",
     "to-fast-properties": "^2.0.0",
     "to-object-path": "^0.3.0",
     "to-regex": "^3.0.2",
